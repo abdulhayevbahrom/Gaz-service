@@ -1,0 +1,37 @@
+.sidebar {
+  width: 270px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+.sidebar_logo {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #dc143c;
+  span {
+    color: crimson;
+  }
+}
+
+.sidebar_links {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar_link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sidebar_link.active {
+  background-color: crimson;
+  color: #fff;
+}
