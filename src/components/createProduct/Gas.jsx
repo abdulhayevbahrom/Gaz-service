@@ -24,10 +24,6 @@ function Gas() {
       label: 65,
     },
     {
-      value: 70,
-      label: 70,
-    },
-    {
       value: 75,
       label: 75,
     },
@@ -56,16 +52,16 @@ function Gas() {
       label: 130,
     },
     {
+      value: 140,
+      label: 140,
+    },
+    {
       value: 150,
       label: 150,
     },
     {
       value: 200,
       label: 200,
-    },
-    {
-      value: 250,
-      label: 250,
     },
   ];
   return (

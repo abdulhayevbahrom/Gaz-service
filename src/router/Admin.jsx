@@ -7,6 +7,7 @@ import Workers from "../components/workers/Workers";
 import Register from "../components/register/Register";
 import CreateProduct from "../components/createProduct/CreateProduct";
 import Statistic from "../components/statistic/Statistic";
+import Products from "../components/products/Products";
 
 function Admin() {
   return (
@@ -20,6 +21,7 @@ function Admin() {
             <Route path="/register-workers" element={<Register />} />
             <Route path="/create-product" element={<CreateProduct />} />
             <Route path="/statistic" element={<Statistic />} />
+            <Route path="/products" element={<Products />} />
           </Routes>
         }
       </div>
