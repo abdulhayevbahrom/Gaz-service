@@ -16,7 +16,7 @@ function Admin() {
       <div className="admin_content">
         {
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/workers" element={<Workers />} />
             <Route path="/register-workers" element={<Register />} />
             <Route path="/create-product" element={<CreateProduct />} />

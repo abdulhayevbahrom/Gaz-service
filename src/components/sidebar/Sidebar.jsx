@@ -30,7 +30,7 @@ function Sidebar() {
     {
       id: 1,
       text: "Dashboard",
-      link: "/dashboard",
+      link: "/",
       icon: <FiGrid />,
     },
     {
