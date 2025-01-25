@@ -41,21 +41,21 @@ function Sidebar() {
     },
     {
       id: 3,
+      text: "Tovar qo'shish",
+      link: "/create-product",
+      icon: <FaPlus />,
+    },
+    {
+      id: 4,
       text: "Ishchilar",
       link: "/workers",
       icon: <FaUsers />,
     },
     {
-      id: 4,
+      id: 5,
       text: "Royhatga olish",
       link: "/register-workers",
       icon: <FaUserPlus />,
-    },
-    {
-      id: 5,
-      text: "Tovar qo'shish",
-      link: "/create-product",
-      icon: <FaPlus />,
     },
     {
       id: 6,

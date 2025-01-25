@@ -15,7 +15,6 @@ export const App = () => {
           </Route>
         </Route>
       </Routes>
-      {/* <Admin /> */}
     </div>
   );
 };

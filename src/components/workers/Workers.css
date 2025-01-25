@@ -2,3 +2,23 @@
   background-color: crimson !important;
   color: #fff !important;
 }
+
+.workers_actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  button {
+    font-size: 16px;
+    background-color: transparent;
+
+    &:first-child {
+      color: green;
+    }
+
+    &:last-child {
+      color: crimson;
+    }
+  }
+}
