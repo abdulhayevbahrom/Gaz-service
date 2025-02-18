@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, Select, message } from "antd";
 import axios from "../../api";
-import { message } from "antd";
+
+const { Option } = Select;
 
 function SpareParts() {
   const [form] = Form.useForm();
@@ -44,23 +45,30 @@ function SpareParts() {
       value: "zapravishni",
     },
   ];
+
   return (
     <div className="spareParts">
       <Form form={form} layout="vertical">
         <h2>Ehtiyot qismlar</h2>
-        <Form.Item name="category" label="Turi">
-          <Select options={options} />
+        <Form.Item required name="category" label="Turi">
+          <Select>
+            {options.map((option) => (
+              <Option key={option.id} value={option.value}>
+                {option.name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
-        <Form.Item name="name" label="Nomi">
+        <Form.Item required name="name" label="Nomi">
           <Input />
         </Form.Item>
-        <Form.Item name="price" label="Narxi">
+        <Form.Item required name="price" label="Narxi">
           <Input type="number" />
         </Form.Item>
-        <Form.Item name="selling_price" label="Sotish narxi">
+        <Form.Item required name="selling_price" label="Sotish narxi">
           <Input type="number" />
         </Form.Item>
-        <Form.Item name="quantity" label="Miqdori">
+        <Form.Item required name="quantity" label="Miqdori">
           <Input type="number" />
         </Form.Item>
         <Button onClick={() => createProduct()}>Saqlash</Button>

@@ -3,5 +3,29 @@
 }
 
 .low-quantity {
-  background-color: #fcd8d8; /* Qizil rang */
+  background-color: #fcd8d8;
+}
+.products .ant-table-thead tr th {
+  background-color: crimson !important;
+  color: #fff !important;
+}
+
+.products_actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  button {
+    font-size: 16px;
+    background-color: transparent;
+
+    &:first-child {
+      color: green;
+    }
+
+    &:last-child {
+      color: crimson;
+    }
+  }
 }

@@ -2,8 +2,8 @@ import React from "react";
 import "./Sidebar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FiGrid } from "react-icons/fi";
-import { FaUsers, FaRegChartBar } from "react-icons/fa";
-import { FaPlus, FaUserPlus } from "react-icons/fa6";
+import { FaUsers, FaRegChartBar, FaClipboardList } from "react-icons/fa";
+import { FaMoneyBillTransfer, FaPlus, FaUserPlus } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 import { BsTools } from "react-icons/bs";
 import { Modal } from "antd";
@@ -59,9 +59,21 @@ function Sidebar() {
     },
     {
       id: 6,
+      text: "Xarajatlar",
+      link: "/expenses",
+      icon: <FaMoneyBillTransfer />,
+    },
+    {
+      id: 7,
       text: "Statistika",
       link: "/statistic",
       icon: <FaRegChartBar />,
+    },
+    {
+      id: 8,
+      text: "Xisobot",
+      link: "/report",
+      icon: <FaClipboardList />,
     },
   ];
   return (

@@ -1,92 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Statistic.css";
 import {
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
-  Brush,
   AreaChart,
   Area,
   ResponsiveContainer,
 } from "recharts";
+import axios from "../../api";
 
 function Statistic() {
+  const [expenses, setExpenses] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/expenses/all", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => setExpenses(res?.data?.innerData))
+      .catch((err) => console.log(err.response.data.message));
+  }, []);
+
+  const filterData = (startData, endDate) => {
+    let start = new Date(startData);
+    let end = new Date(endDate);
+    let filtered = expenses.filter((expense) => {
+      let date = new Date(expense.createdAt);
+      return date >= start && date <= end;
+    });
+    return filtered.reduce((a, b) => a + b.price, 0);
+  };
+
   const data = [
     {
-      name: "Yanvar",
+      name: "1-hafta",
       uv: 4000,
-      pv: 100,
+      pv: filterData("2025-02-01", "2025-02-07"),
       amt: 2400,
     },
     {
-      name: "Fevral",
+      name: "2-hafta",
       uv: 3000,
-      pv: 200,
+      pv: filterData("2025-02-08", "2025-02-14"),
       amt: 2210,
     },
     {
-      name: "Mart",
+      name: "3-hafta",
       uv: 2000,
-      pv: 150,
+      pv: filterData("2025-02-15", "2025-02-21"),
       amt: 2290,
     },
     {
-      name: "Aprel",
+      name: "4-hafta",
       uv: 2780,
-      pv: 400,
+      pv: filterData("2025-02-22", "2025-02-28"),
       amt: 2000,
-    },
-    {
-      name: "May",
-      uv: 1890,
-      pv: 800,
-      amt: 2181,
-    },
-    {
-      name: "Iyun",
-      uv: 2390,
-      pv: 100,
-      amt: 2500,
-    },
-    {
-      name: "Iyul",
-      uv: 3490,
-      pv: 500,
-      amt: 2100,
-    },
-    {
-      name: "Avgust",
-      uv: 3490,
-      pv: 50,
-      amt: 2100,
-    },
-    {
-      name: "Sentyabr",
-      uv: 3490,
-      pv: 900,
-      amt: 2100,
-    },
-    {
-      name: "Oktyabr",
-      uv: 3490,
-      pv: 300,
-      amt: 2100,
-    },
-    {
-      name: "Noyabr",
-      uv: 3490,
-      pv: 700,
-      amt: 2100,
-    },
-    {
-      name: "Dekabr",
-      uv: 3490,
-      pv: 400,
-      amt: 2100,
     },
   ];
   return (

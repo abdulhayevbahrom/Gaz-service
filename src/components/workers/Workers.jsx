@@ -15,7 +15,11 @@ function Workers() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("/workers/all")
+      .get("/workers/all", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => setWorkers(res.data.innerData))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));

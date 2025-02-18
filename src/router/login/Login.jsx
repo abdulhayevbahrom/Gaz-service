@@ -2,17 +2,22 @@ import React from "react";
 import "./Login.css";
 import { Form, Input, Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import axios from "../../api";
 
 function Login() {
   const navigate = useNavigate();
   const signin = (values) => {
-    if (values.username === "admin" && values.password === "12345678") {
-      localStorage.setItem("token", "token12345678admin");
-      navigate("/dashboard");
-      return;
-    } else {
-      message.error("username yoki parol xato!");
-    }
+    axios
+      .post("/admin/login", values)
+      .then((res) => {
+        if (res.data.success) {
+          localStorage.setItem("token", res.data.innerData.token);
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        message.error(err?.response?.data?.message);
+      });
   };
 
   return (
@@ -26,10 +31,10 @@ function Login() {
         <Form onFinish={signin}>
           <h2>Kirish</h2>
           <Form.Item
-            name="username"
-            rules={[{ required: true, message: "Iltimos, username kiriting!" }]}
+            name="login"
+            rules={[{ required: true, message: "Iltimos, login kiriting!" }]}
           >
-            <Input type="text" placeholder="username" />
+            <Input type="text" placeholder="login" />
           </Form.Item>
           <Form.Item
             name="password"

@@ -1,7 +1,11 @@
 import React from "react";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, message, Select } from "antd";
+import axios from "../../api";
 
 function Gas() {
+  const [form] = Form.useForm();
+  const [form2] = Form.useForm();
+
   const selectData = [
     {
       value: 30,
@@ -64,37 +68,135 @@ function Gas() {
       label: 200,
     },
   ];
+
+  const saveToDataBase = async () => {
+    try {
+      let data = form.getFieldsValue();
+      form.submit();
+      data.quantity = Number(data.quantity);
+      data.price = +data.price;
+      data.selling_price = +data.selling_price;
+      data.name = "Gaz ballon (Metan)";
+      data.category = String(data.category);
+
+      const response = await axios.post("/product/create", data);
+      if (response.data.success) {
+        message.success(response.data.message);
+        form.resetFields();
+      }
+    } catch (err) {
+      console.log(err);
+      message.error(err.response.data.message);
+    }
+  };
+  const saveToDataBasePropan = async () => {
+    try {
+      let data = form2.getFieldsValue();
+      form2.submit();
+      data.quantity = Number(data.quantity);
+      data.price = +data.price;
+      data.selling_price = +data.selling_price;
+      data.name = "Gaz ballon (Propan)";
+      data.category = String(data.category);
+
+      const response = await axios.post("/product/create", data);
+      if (response.data.success) {
+        message.success(response.data.message);
+        form2.resetFields();
+      }
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+      message.error(err.response.data.message);
+    }
+  };
   return (
     <div className="create-gas">
       <div className="metan">
         <h2>Metan</h2>
-        <Form layout="vertical">
-          <Form.Item label="Miqdori">
-            <Input />
+        <Form form={form} layout="vertical">
+          <Form.Item
+            rules={[
+              { required: true, message: "mahsulot miqdori kiritilmadi" },
+            ]}
+            required
+            label="Miqdori"
+            name="quantity"
+          >
+            <Input type="number" />
           </Form.Item>
-          <Form.Item label="Narxi">
-            <Input />
+
+          <Form.Item
+            rules={[{ required: true, message: "mahsulot narxi kiritilmadi" }]}
+            name="price"
+            required
+            label="Narxi"
+          >
+            <Input type="number" />
           </Form.Item>
-          <Form.Item label="Turi">
+          <Form.Item
+            rules={[
+              { required: true, message: "mahsulot sotish narxi kiritilmadi" },
+            ]}
+            name="selling_price"
+            required
+            label="Sotish narxi"
+          >
+            <Input type="number" />
+          </Form.Item>
+          <Form.Item
+            rules={[{ required: true, message: "turi kiritilmadi" }]}
+            required
+            name="category"
+            label="Turi"
+          >
             <Select options={selectData} />
           </Form.Item>
-          <Button>Saqlash</Button>
+          <Button onClick={() => saveToDataBase()}>Saqlash</Button>
         </Form>
       </div>
 
       <div className="propan">
         <h2>Propan</h2>
-        <Form layout="vertical">
-          <Form.Item label="Miqdori">
-            <Input />
+        <Form form={form2} layout="vertical">
+          <Form.Item
+            rules={[
+              { required: true, message: "mahsulot miqdori kiritilmadi" },
+            ]}
+            required
+            label="Miqdori"
+            name="quantity"
+          >
+            <Input type="number" />
           </Form.Item>
-          <Form.Item label="Narxi">
-            <Input />
+
+          <Form.Item
+            rules={[{ required: true, message: "mahsulot narxi kiritilmadi" }]}
+            name="price"
+            required
+            label="Narxi"
+          >
+            <Input type="number" />
           </Form.Item>
-          <Form.Item label="Turi">
+          <Form.Item
+            rules={[
+              { required: true, message: "mahsulot sotish narxi kiritilmadi" },
+            ]}
+            name="selling_price"
+            required
+            label="Sotish narxi"
+          >
+            <Input type="number" />
+          </Form.Item>
+          <Form.Item
+            rules={[{ required: true, message: "turi kiritilmadi" }]}
+            required
+            name="category"
+            label="Turi"
+          >
             <Select options={selectData} />
           </Form.Item>
-          <Button>Saqlash</Button>
+          <Button onClick={() => saveToDataBasePropan()}>Saqlash</Button>
         </Form>
       </div>
     </div>
