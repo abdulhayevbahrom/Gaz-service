@@ -20,7 +20,7 @@ function Sidebar() {
       okType: "danger",
       cancelText: "Yo'q",
       onOk() {
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         navigate("/login");
       },
       onCancel() {},

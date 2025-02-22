@@ -30,7 +30,7 @@ function ExpensesCreate() {
     axios
       .post("/expenses/create", e, {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
         },
       })
       .then((res) => {

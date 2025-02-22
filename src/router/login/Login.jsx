@@ -11,7 +11,7 @@ function Login() {
       .post("/admin/login", values)
       .then((res) => {
         if (res.data.success) {
-          localStorage.setItem("token", res.data.innerData.token);
+          sessionStorage.setItem("token", res.data.innerData.token);
           navigate("/");
         }
       })

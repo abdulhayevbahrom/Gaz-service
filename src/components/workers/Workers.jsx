@@ -17,7 +17,7 @@ function Workers() {
     axios
       .get("/workers/all", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
       })
       .then((res) => setWorkers(res.data.innerData))

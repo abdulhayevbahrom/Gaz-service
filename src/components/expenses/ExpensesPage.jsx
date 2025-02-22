@@ -11,7 +11,7 @@ function ExpensesPage() {
     axios
       .get("/expenses/all", {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
         },
       })
       .then((res) => {

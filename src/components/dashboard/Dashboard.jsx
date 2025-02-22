@@ -17,7 +17,7 @@ function Dashboard() {
     axios
       .get("/product/all", {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
         },
       })
       .then((res) => setProducts(res.data?.innerData))
@@ -30,7 +30,7 @@ function Dashboard() {
     try {
       let res = await axios.get("/dashboard", {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
         },
       });
       setProfitAndLess(res?.data?.innerData);
